@@ -14,20 +14,22 @@ const { API_VERSIO, IP_SERVER, PORT_DB, API_VERESION } = require("./config");
 
 /*`mongodb://${IP_SERVER}:${PORT_DB}/proyect_db`*/
 mongoose.connect(
-  `mongodb+srv://username:username@cluster0.egnxu.mongodb.net/test`,
+  `mongodb://${IP_SERVER}:${PORT_DB}/proyect_db`,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err, res) => {
     if (err) {
       throw err;
     } else {
-      console.log("Succes conection to db");
+      //console.log("Succes conection to db");
       
       app.listen(PORT_SERVER, () => {
         console.log("se esta escuchando el puerto", PORT_SERVER);
-        console.log(`http://${IP_SERVER}:${PORT_SERVER}/api/${API_VERESION}/`);
+        console.log(`mongodb://${IP_SERVER}:${PORT_DB}/proyect_db`);
       });
     }
   }
 );
+
+
 
 //mongoose.connect(`mongodb+srv://username:username@cluster0.egnxu.mongodb.net/test`).then((data)=>console.log(`mongodb://${IP_SERVER}:${PORT_DB}/proyect_db`))
