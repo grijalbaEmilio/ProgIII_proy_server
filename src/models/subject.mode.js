@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const SubjectModel = mongoose.Schema({
-    depatment : {
+    department : {
         type : String,
         require : true
     },
@@ -10,10 +10,10 @@ const SubjectModel = mongoose.Schema({
         require : true
     },
     activity_code : {
-        type : Number,
+        type : String,
         require : true
     },
-    number_code:{
+    number_credits:{
         type : Number,
         require : true
     },
@@ -21,8 +21,12 @@ const SubjectModel = mongoose.Schema({
         type : Number,
         require : true
     },
+    piaa_status:{
+        type : Boolean,
+        require : true
+    },
     file_number:{
-        type : Number,
+        type : Object,
         require : true,
         month_file:{
             type : Number,
@@ -41,11 +45,11 @@ const SubjectModel = mongoose.Schema({
         type : Number,
         require : true
     },
-    offsire_hours:{
+    offsite_hours:{
         type : Number,
         require : true
     },
-    hourson_attendence_reprovais:{
+    hourson_attendence_reprovals:{
         type : Number,
         require : true
     },
@@ -53,8 +57,32 @@ const SubjectModel = mongoose.Schema({
         type : Boolean,
         require : true
     },
+    duration_semester : {
+        type : Number,
+        require : true
+    },
+    practical_hours : {
+        type : Number,
+        require : true
+    },
+    presential_teacher_hours : {
+        type : Number,
+        require : true
+    },
+    maximum_quotas : {
+        type : Number,
+        require : true
+    },
+    passing_score : {
+        type : Number,
+        require : true
+    },
+    weeks_duration : {
+        type : Number,
+        require : true
+    }
     
 
 })
 
-module.exports = mongoose.model('subject', SubjectModel)
+module.exports = mongoose.model('subjects', SubjectModel)
