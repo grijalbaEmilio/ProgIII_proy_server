@@ -29,3 +29,8 @@ exports.createRefreshToken=(user)=>{
 exports.decodedToken = (token)=>{
     return kwt.decoded(token, SECRET_KEY, true)
 }
+
+
+exports.createTokenSubject = () => {
+    return jwt.encode(payload,  SECRET_KEY)
+}

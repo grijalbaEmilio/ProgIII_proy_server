@@ -73,16 +73,14 @@ const createSubject = async (req, res) => {
                     res.status(500).json({ message: err });
                 } else {
                     if (!subjectStored) {
-                        res.ststus(400).json({ message: "Error al crear el usuario." });
+                        res.ststus(400).json({ message: "Error al crear la asignatura." });
                     } else {
                         res.status(200).json({ subject: subjectStored });
                     }
                 }
             })
         }
-
     }
-
 }
 
 // retorna true si ya exixte la signatura
@@ -110,9 +108,9 @@ const getSubject = (req, res) => {
             return data
         }
     })
-
 }
 
+// filtra las asignaturas según la versión del piaa
 const filterNumPiaa = (req, res) => {
     const { numPiaa } = req.params
     Subject.find({ piaa_version: numPiaa }).then((data) => {
@@ -120,9 +118,36 @@ const filterNumPiaa = (req, res) => {
             res.status(404).send({ message: "No hay asignaturas con versión de piaa "+ numPiaa })
         }else{
             res.status(200).send({ data })
-        }
+        }findOne
     })
-
 }
 
-module.exports = { createSubject, getSubject, filterNumPiaa }
+//actualiza una asignatura dado su código
+const updateSubject = (req, res) => {
+    const {activitCyode} = req.params
+    const body = req.body
+    console.log(body);
+    Subject.findOneAndUpdate({ activity_code : activitCyode },body, (err, subjectData)=>{
+        if(err || !subjectData){
+            res.status(404).json({message : "Asignatura no encontrada."})
+        }else{
+            res.send({subjectData})
+        }
+    })
+}
+
+//elimina una asignatura
+const deleteSubject = (req, res) => {
+    const {idSubject} = req.params
+    Subject.findByIdAndRemove(idSubject, (err, userDeleted) => {
+        err
+          ? res.status(500).send({ message: "Error del servidor." })
+          : !userDeleted
+            ? res.status(404).send({ message: "Asignatura no encontrada." })
+            : res
+              .status(200)
+              .send({ message: "La asignatura ha sido eliminada correctamente." });
+      });
+}
+
+module.exports = { createSubject, getSubject, filterNumPiaa, updateSubject, deleteSubject }
