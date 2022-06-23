@@ -47,7 +47,7 @@ const signIn = (req, res) => {
   //console.log("Login correcto");
 
   const params = req.body;
-  const email = params.email.toLowerCase();
+  const email = params.email;
   const password = params.password;
   //console.log(params);
   User.findOne({ email }, (err, userStored) => {
@@ -179,7 +179,7 @@ function getAvatar(req, res) {
 
 async function updateUser(req, res) {
   let userData = req.body;
-  userData.email = req.body.email.toLowerCase();
+  userData.email = req.body.email;
   const params = req.params;
 
   if (userData.password) {
@@ -221,7 +221,7 @@ function signUpAdmin(req, res) {
   const { name_user, lastname, email, role, password } = req.body;
   user.name_user = name_user;
   user.lastname = lastname;
-  user.email = email.toLowerCase();
+  user.email = email ? email : 'user';
   user.role = role;
   user.active = true;
 

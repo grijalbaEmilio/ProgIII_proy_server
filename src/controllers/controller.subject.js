@@ -62,7 +62,7 @@ const createSubject = async (req, res) => {
         !maximum_quotas ||
         !passing_score ||
         !weeks_duration) {
-        res.status(404).json({ message: 'no pa llene todo' })
+        res.status(404).json({ message: 'Todos los campos son requeridos !' })
     } else {
         const exists = await existsSubject(activity_code)
         if (exists) {
