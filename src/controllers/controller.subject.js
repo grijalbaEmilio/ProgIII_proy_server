@@ -126,7 +126,7 @@ const filterNumPiaa = (req, res) => {
 const updateSubject = (req, res) => {
     const {activitCyode} = req.params
     const body = req.body
-    console.log(body);
+    //console.log(body);
     Subject.findOneAndUpdate({ activity_code : activitCyode },body, (err, subjectData)=>{
         if(err || !subjectData){
             res.status(404).json({message : "Asignatura no encontrada."})

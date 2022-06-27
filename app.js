@@ -15,7 +15,7 @@ app.get('/', (req, res)=>{
     res.json({message : 'conección exitosa con el back'})
 })
 
-userRoutes(app)
+userRoutes(app) 
 
 /* app.listen(3000, ()=>{
     console.log('Linstening the port 3000')

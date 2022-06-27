@@ -28,12 +28,12 @@ sgMail
 function signUp(req, res) {
   //console.log('inicial --->',User(req.body));
   const user = new User();
-  const { name_user, lastname, email, password, repeatPassword } = req.body;
+  const { name_user, lastname, email, password, role, repeatPassword } = req.body;
   user.name_user = name_user;
   user.lastname = lastname;
   user.email = email;
   /* por defecto almacenamos rol y si es un usuario o no */
-  user.role = "admin";
+  !role ?  user.role = "coordinator" : user.role = role
   user.active = true;
   //console.log("final --->", user);
   /* si no exixte una de las password */
